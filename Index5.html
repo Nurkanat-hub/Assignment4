@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Car Tax Calculator</h1>
+        <label for="price">Enter the price of the car ($):</label>
+        <input type="number" id="price" placeholder="Enter car price" required>
+
+        <button onclick="calculateTax()">Calculate Tax</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            let price = document.getElementById('price').value;
+            let taxRate;
+            let taxAmount;
+
+            if (price > 10000) {
+                taxRate = 0.25;
+            } else if (price >= 5000 && price <= 10000) {
+                taxRate = 0.20;
+            } else {
+                taxRate = 0.15;
+            }
+
+            taxAmount = price * taxRate;
+            let totalPrice = parseFloat(price) + taxAmount;
+
+            document.getElementById('result').innerHTML = `Tax Rate: ${(taxRate * 100)}% <br> Tax Amount: $${taxAmount.toFixed(2)} <br> Total Price (with tax): $${totalPrice.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>

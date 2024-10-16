@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Button</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.5s ease;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    #actionButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #imageContainer img {
+      max-width: 200px;
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Interactive Button Example</h1>
+    <button id="actionButton" onclick="performActions()">Click Me!</button>
+
+    <div id="imageContainer">
+      <img id="toggleImage" src="фото.jpg" alt="Image 1">
+    </div>
+
+    <p id="textContent">This is some text content that can be hidden or shown.</p>
+  </div>
+  
+  <script>
+    let isBlueBackground = false;
+    let isImageVisible = true;
+    let isTextVisible = true;
+
+    function performActions() {
+      if (isBlueBackground) {
+        document.body.style.backgroundColor = "white";
+      } else {
+        document.body.style.backgroundColor = "lightblue";
+      }
+      isBlueBackground = !isBlueBackground;
+
+      const image = document.getElementById('toggleImage');
+      if (isImageVisible) {
+        image.classList.add('hidden');
+      } else {
+        image.classList.remove('hidden');
+      }
+      isImageVisible = !isImageVisible;
+
+      const text = document.getElementById('textContent');
+      if (isTextVisible) {
+        text.classList.add('hidden');
+      } else {
+        text.classList.remove('hidden');
+      }
+      isTextVisible = !isTextVisible;
+    }
+  </script>
+</body>
+</html>

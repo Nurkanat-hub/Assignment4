@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sorting Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Number Sorting Tool</h1>
+    
+    <form id="sortForm">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" placeholder="e.g., 5, 3, 9, 1">
+        
+        <br>
+
+        <label for="order">Sort Order:</label>
+        <select id="order">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+
+        <br>
+
+        <button type="button" onclick="sortNumbers()">Sort Numbers</button>
+    </form>
+
+    <h2>Sorted Result:</h2>
+    <p id="result"></p>
+
+    <script>
+        function sortNumbers() {
+            
+            let numbersInput = document.getElementById("numbers").value;
+            let order = document.getElementById("order").value;
+            
+            let numbersArray = numbersInput.split(',').map(num => num.trim());
+            if (numbersArray.some(num => isNaN(num) || num === '')) {
+                document.getElementById("result").innerText = "Please enter valid numbers separated by commas.";
+                return;
+            }
+
+            numbersArray = numbersArray.map(Number);
+
+            if (order === "asc") {
+                numbersArray.sort((a, b) => a - b);
+            } else {
+                numbersArray.sort((a, b) => b - a);
+            }
+
+            document.getElementById("result").innerText = `Sorted Numbers: ${numbersArray.join(', ')}`;
+        }
+    </script>
+
+</body>
+</html>
